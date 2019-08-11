@@ -9,6 +9,7 @@ from bs4 import BeautifulSoup as bs
 
 
 url = 'https://en.wikipedia.org/wiki/List_of_algorithms'
+base_url = 'https://en.wikipedia.org/'
 
 req = requests.get(url)
 soup = bs(req.text, 'lxml')
@@ -49,7 +50,7 @@ for elem in global_div:
                 if child.ul is None and child.a is not None:
                     print(child)
                     title = child.a['title']
-                    link = url+child.a['href']
+                    link = base_url+child.a['href']
                     description = child.a.contents[0]
                     if title == description:
                         description = ''
